@@ -1,0 +1,308 @@
+﻿<html>
+<head>
+
+<title></title>
+
+<style type="text/css">
+TD {
+text-align: center;
+}
+
+#title {
+color:red;
+font-size:35px;
+font-weight:bolder;
+}
+
+#blank {
+padding:10px;
+text-align:center;
+}
+
+#blanklarge {
+padding:30px;
+text-align:center;
+}
+
+#cardimg {
+background-image:url();
+background-attachment:fixed;
+}
+
+#blockmany {
+color:white;
+}
+
+#all {
+text-align: center;
+}
+
+#left {
+background-color:yellow;
+padding:10px;
+font-weight:bolder;
+}
+
+#get_persent{
+background-color:red;
+}
+
+#get_secure{
+background-color:white;
+}
+
+#point{
+padding:10px;
+text-align:center;
+}
+
+#wow{
+color:white;
+}
+
+</style>
+</head>
+
+<script type="text/javascript">
+var people=prompt("참가자가 몇명 입니까?");
+var get=prompt("당첨자는 몇명 입니까?");
+people=Number(people);
+get=Number(get);
+while(get>people){
+	if(get>people){
+	alert("참가자가 당첨자보다 많을 수 없습니다!!");
+	var get=prompt("당첨자는 몇명 입니까?");
+	get=Number(get);
+	}
+}
+
+function card_Turn(but_num) {
+var getResult=document.getElementById("result");
+var getGet=document.getElementById("getit");
+var getClick=document.getElementById("people_left");
+
+howMuchclick++;
+
+	for (d=0; d<but_num+1; d++){
+		var getButton=document.getElementById("butt"+d);
+		var getImage=document.getElementById("imgs"+d);
+	}
+
+	if(block_many[but_num]=='O'){
+		getResult.innerHTML="<img src='congratulationlogo.png'></img>";
+		getButton.innerHTML="&nbsp";
+		getImage.innerHTML="<img src='congratulation.png'></img>";
+		get_see--;
+
+		getGet.innerHTML=get_see;
+	} else {
+		getResult.innerHTML="<img src='bomb.png'></img>";
+		getButton.innerHTML="&nbsp";
+		getImage.innerHTML="<img src='secure.png'></img>";
+	}
+
+persent=get_see/(people-howMuchclick)*100
+
+	if(get_see==0){
+		getClick.innerHTML=100+" %";
+		document.getElementById("get_persent").style.width="500px";
+		document.getElementById("wow").innerHTML="ㅋㅋㅋ꺌꺌꺌꺌 대박사건! 꺌꺌꺌꺌ㅋㅋㅋ";
+	} else {
+		getClick.innerHTML=Math.floor(persent)+" %";
+
+document.getElementById("get_persent").style.width=(Math.floor(persent)*5);
+	}
+
+}
+
+
+function retry() {
+
+for(a=0; a<block_people; a++){
+	block_many[a] = 'X';
+}
+
+for(i=0; i<block_define; i++){
+	block_num = Math.floor(Math.random() * block_people);
+	while(block_many[block_num]=='O'){
+		block_num = Math.floor(Math.random() * block_people);
+	}
+	block_many[block_num] = 'O';
+}
+
+var getArray=document.getElementById("blockmany");
+getArray.innerHTML=block_many;
+
+}
+
+function restart() {
+window.location.reload();
+}
+
+var get_see = get;
+var get_show = get;
+var block_people = people;
+var block_define = get;
+var block_many = new Array(block_people);
+var block_num;
+var but_num = 0;
+var b = 0;
+var c = 0;
+var people_see = people;
+var howMuchclick = 0;
+var getPersentage = 0;
+var nbspMuch = 0;
+var nbspMuch2 = 0;
+var persent = 0;
+
+for(a=0; a<block_people; a++){
+	block_many[a] = 'X';
+}
+
+for(i=0; i<block_define; i++){
+	block_num = Math.floor(Math.random() * block_people);
+	while(block_many[block_num]=='O'){
+		block_num = Math.floor(Math.random() * block_people);
+	}
+	block_many[block_num] = 'O';
+}
+
+document.write("<center>");
+document.write("<table border='0'>");
+document.write("<tr>");
+document.write("<td id='title' colspan=6>");
+document.write("<img src='titlename.png'></img>");
+document.write("</td>");
+document.write("</tr>");
+
+
+while(b<block_people) {
+
+if(b==block_people){
+	break;
+}
+
+document.write("<tr>");
+document.write("<td colspan='6'>&nbsp</td></tr><tr>");
+
+for(a=1; a<7; a++){
+	document.write("<td><div id='imgs"+ c +"'>");
+	document.write("<img src='card2.png'></img>");
+	document.write("</div></td>");
+	c++;
+	if(a%6==0||c==block_people){
+		document.write("</tr><tr>");
+		break;
+	}
+}
+
+for(a=1; a<7; a++){
+	document.write("<td><div id='butt"+ but_num +"'><input type='button' value='뒤집기' onClick='card_Turn("+ but_num +")'></div></td>");
+	but_num++;
+	b++;
+	if(a%6==0||b==block_people){
+		document.write("</tr>");
+		break;
+	}
+}
+
+}
+
+document.write("</table>");
+
+//document.write("<br>");
+//document.write("<div id='blockmany'>" + block_many + "</div>");
+
+document.write("<br>");
+
+document.write("<table border='5'>");
+	document.write("<tr>");
+	document.write("<td id='blanklarge'>");
+	document.write("<center>");
+	
+	document.write("<table border='3'>");
+		document.write("<tr>");
+		document.write("<td id='blank'>");
+		document.write("<b>참가자 : " + people_see + " 명</b><p>");
+		document.write("<b>당첨 : " + get_see + " 명</b><p>");
+		document.write("</td>");
+		document.write("</tr>");
+	document.write("</table>");
+
+	document.write("<br>");
+
+	document.write("<table border='4'>");
+		document.write("<tr>");
+		document.write("<td id='left'>");
+		document.write("남은 당첨<div id='getit'>" + get_see + "</div>");
+		document.write("</td>");
+		document.write("</tr>");
+
+		document.write("<td>");
+
+		document.write("<div id='change'>");
+
+		document.write("<table border='1'>");
+			document.write("<tr>");
+			document.write("<td bgcolor=white height=30>");
+			document.write("<b><div id='people_left'>");
+			document.write(Math.floor(get_see/people*100)+" %");
+			document.write("</div></b>");
+			document.write("</td>");
+			document.write("</tr>");
+
+			document.write("<tr>");
+			document.write("<td>");
+			document.write("&nbsp&nbsp&nbsp&nbsp&nbsp<b>당첨 확률</b>&nbsp&nbsp&nbsp&nbsp&nbsp");
+			document.write("</td>");	
+			document.write("</tr>");
+		document.write("</table>");
+		
+		document.write("</div>");
+
+		document.write("</td>");
+
+	document.write("</table>");
+
+	document.write("<br>");
+
+document.write("<center>");
+
+document.write("<button name='' value='' onClick='retry()'><img src='reflash.png'></img></button>");
+document.write("<p>");	
+
+document.write("<button name'' value='' onClick='restart()'><img src='restart.png' height='60' width='60'></img></button>");
+
+document.write("</td>");
+document.write("<td width=500 valign='bottom'>");
+document.write("<div id='result'></div>");
+
+document.write("<center>");
+document.write("<table width='500' frame='hsides' rules='rows'>");
+
+document.write("<tr>");
+document.write("<td id='get_persent' style='width:" + Math.floor(get_see/people*100)*5 + "px:' height='30'>");
+document.write("<marquee speed='0'><b id='wow'>과연!!</b></marquee>");
+document.write("</td>");
+document.write("<td id='get_secure' height='30'>");
+document.write("<b id=''></b>");
+document.write("</td>");
+document.write("</tr>");
+
+document.write("<tr>");
+document.write("<td colspan='2'>");
+document.write("<b>시각적 당첨 확률</b>");
+document.write("</td>");
+document.write("</tr>");
+
+document.write("</table>");
+
+document.write("</td>");
+
+document.write("</tr>");
+document.write("</table>");
+
+</script>
+<body bgcolor='white'>
+</body>
+</html>
