@@ -48,7 +48,7 @@
 
 <h3 align="center">당첨</h3>
 <p align="center">
-<img alt="zebi" src="https://github.com/cwadven/drawing_lots_HTML_JSㄴ/blob/master/assets/seq5.PNG"/>
+<img alt="zebi" src="https://github.com/cwadven/drawing_lots_HTML_JS/blob/master/assets/seq5.PNG"/>
 </p>
 
 ~~~
